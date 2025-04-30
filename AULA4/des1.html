@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Moedas</title>
+</head>
+<body>
+    <h2>Conversor de Moedas</h2>
+
+    <label for="valorReais">Valor em Reais (R$): </label>
+    <input type="number" id="valorReais" placeholder="Digite o valor em R$" step="0.01">
+    <br><br>
+
+    <label for="moedaDestino">Selecione a moeda de destino:</label>
+    <select id="moedaDestino">
+        <option value="dolar">Dólar (US$)</option>
+        <option value="euro">Euro (€)</option>
+    </select>
+    <br><br>
+
+    <button onclick="converter()">Converter</button>
+
+    <div id="resultadoConversao"></div>
+
+    <script>
+        function converter() {
+            // Obtém os valores informados pelo usuário
+            let valorReais = parseFloat(document.getElementById("valorReais").value);
+            let moedaDestino = document.getElementById("moedaDestino").value;
+
+            // Taxas de câmbio reais (exemplo)
+            let taxaDolar = 5.25; // 1 R$ = 5.25 US$
+            let taxaEuro = 5.80;  // 1 R$ = 5.80 €
+
+            // Verifica se o valor em Reais foi informado
+            if (isNaN(valorReais) || valorReais <= 0) {
+                document.getElementById("resultadoConversao").innerHTML = "<strong>Por favor, insira um valor válido em Reais!</strong>";
+                return;
+            }
+
+            // Variáveis para armazenar o valor convertido
+            let valorConvertido;
+            
+            // Usando switch case para determinar a moeda de destino
+            switch (moedaDestino) {
+                case "dolar":
+                    valorConvertido = valorReais / taxaDolar;
+                    document.getElementById("resultadoConversao").innerHTML = `
+                        <p>Valor em Dólares (US$): <strong>${valorConvertido.toFixed(2)}</strong></p>
+                    `;
+                    break;
+
+                case "euro":
+                    valorConvertido = valorReais / taxaEuro;
+                    document.getElementById("resultadoConversao").innerHTML = `
+                        <p>Valor em Euros (€): <strong>${valorConvertido.toFixed(2)}</strong></p>
+                    `;
+                    break;
+
+                default:
+                    document.getElementById("resultadoConversao").innerHTML = "<strong>Selecione uma moeda válida!</strong>";
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>

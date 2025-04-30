@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classificação de Notas</title>
+</head>
+<body>
+    <h2>Classificação de Notas</h2>
+
+    <label for="nota">Informe a nota (0 a 10): </label>
+    <input type="number" id="nota" min="0" max="10" step="0.1" placeholder="Digite a nota">
+    <br><br>
+
+    <button onclick="classificarNota()">Classificar Nota</button>
+
+    <div id="resultadoClassificacao"></div>
+
+    <script>
+        function classificarNota() {
+            // Obtém a nota informada pelo usuário
+            let nota = parseFloat(document.getElementById("nota").value);
+
+            // Verifica se a nota está no intervalo válido de 0 a 10
+            if (isNaN(nota) || nota < 0 || nota > 10) {
+                document.getElementById("resultadoClassificacao").innerHTML = "<strong>Por favor, insira uma nota válida entre 0 e 10!</strong>";
+                return;
+            }
+
+            // Variável para armazenar a classificação
+            let classificacao;
+
+            // Usando switch para determinar a classificação
+            switch (true) {
+                case (nota >= 9):
+                    classificacao = "A";
+                    break;
+                case (nota >= 7):
+                    classificacao = "B";
+                    break;
+                case (nota >= 5):
+                    classificacao = "C";
+                    break;
+                case (nota >= 3):
+                    classificacao = "D";
+                    break;
+                default:
+                    classificacao = "F";
+                    break;
+            }
+
+            // Exibe a classificação
+            document.getElementById("resultadoClassificacao").innerHTML = `
+                <p>A classificação para a nota ${nota} é: <strong>${classificacao}</strong></p>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+// Exemplo de operadores matemáticos
+
+let a = 10;
+let b = 5;
+
+// Adição
+let soma = 10 + 5;
+console.log("Soma: " + soma);
+// Exemplo de variáveis
+// Multiplicação
+let multiplicacao = 10 * 5;
+console.log("Multiplicação: " + multiplicacao);
