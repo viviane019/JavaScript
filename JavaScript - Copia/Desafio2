@@ -1,0 +1,61 @@
+let num9 = 10;
+let num8= 20;
+
+let resultado = num9+ num8;
+console.log('resultado'+ resultado);
+
+
+
+//desafio 1
+//criar um algoritimo para separar valores pares e impares
+
+let  numero = 10;
+if (numero %2 === 0) {
+    console.log('o numero par ')
+} 
+else {       
+    console.log('o numero e impar')
+}
+
+//desafio 2
+//Criar um algoritimo para calcular valores com as expressões multiplicar e dividir 
+
+let num5 = 5;
+let num2 = 20;
+let conta = 1;
+
+if (conta === 1 ) {
+    let resul = num5 + num2;
+console.log('resultado da soma' + resul)
+}
+
+
+ if (conta === 2 ) {
+    let resul = num5 + num8;
+console.log('resultado da subtração' + resul)
+}
+
+
+ else if (conta == 9 ) {
+    let resul = num1 + num3;
+console.log('resultado da multiplicação' +  resul)
+}
+
+
+//hayron
+let a = 10;
+let b = 5;
+
+let haysoma = a + b;
+let haysub = a - b;
+let haymult = a * b;
+let haydiv = a / b;
+console.log(' resultado soma' + haysoma);
+console.log('resultado' + haysoma);
+console.log('resultado' + haymult);
+console.log('resultado' + haydiv);
+
+
+let vivi = 6
+
+

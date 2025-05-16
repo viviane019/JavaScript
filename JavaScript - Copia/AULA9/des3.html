@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Área</title>
+</head>
+<body>
+    <h2>Calculadora de Área</h2>
+
+    <label for="figura">Escolha a figura geométrica:</label>
+    <select id="figura">
+        <option value="circulo">Círculo</option>
+        <option value="quadrado">Quadrado</option>
+        <option value="triangulo">Triângulo</option>
+    </select>
+    <br><br>
+
+    <div id="inputCampos"></div>
+
+    <button onclick="calcularArea()">Calcular Área</button>
+
+    <div id="resultado"></div>
+
+    <script>
+        // Função para exibir os campos necessários com base na figura escolhida
+        function mostrarCampos() {
+            let figura = document.getElementById("figura").value;
+            let campos = "";
+
+            switch(figura) {
+                case "circulo":
+                    campos = `
+                        <label for="raio">Raio do Círculo:</label>
+                        <input type="number" id="raio" placeholder="Digite o raio" step="0.1">
+                    `;
+                    break;
+                case "quadrado":
+                    campos = `
+                        <label for="lado">Lado do Quadrado:</label>
+                        <input type="number" id="lado" placeholder="Digite o lado" step="0.1">
+                    `;
+                    break;
+                case "triangulo":
+                    campos = `
+                        <label for="base">Base do Triângulo:</label>
+                        <input type="number" id="base" placeholder="Digite a base" step="0.1">
+                        <br><br>
+                        <label for="altura">Altura do Triângulo:</label>
+                        <input type="number" id="altura" placeholder="Digite a altura" step="0.1">
+                    `;
+                    break;
+                default:
+                    campos = "";
+            }
+
+            document.getElementById("inputCampos").innerHTML = campos;
+        }
+
+        // Função para calcular a área com base na figura escolhida
+        function calcularArea() {
+            let figura = document.getElementById("figura").value;
+            let area;
+
+            switch(figura) {
+                case "circulo":
+                    let raio = parseFloat(document.getElementById("raio").value);
+                    if (isNaN(raio) || raio <= 0) {
+                        area = "Por favor, insira um valor válido para o raio!";
+                    } else {
+                        area = Math.PI * Math.pow(raio, 2); // Fórmula da área do círculo: A = π * r²
+                    }
+                    break;
+
+                case "quadrado":
+                    let lado = parseFloat(document.getElementById("lado").value);
+                    if (isNaN(lado) || lado <= 0) {
+                        area = "Por favor, insira um valor válido para o lado!";
+                    } else {
+                        area = Math.pow(lado, 2); // Fórmula da área do quadrado: A = lado²
+                    }
+                    break;
+
+                case "triangulo":
+                    let base = parseFloat(document.getElementById("base").value);
+                    let altura = parseFloat(document.getElementById("altura").value);
+                    if (isNaN(base) || base <= 0 || isNaN(altura) || altura <= 0) {
+                        area = "Por favor, insira valores válidos para a base e altura!";
+                    } else {
+                        area = (base * altura) / 2; // Fórmula da área do triângulo: A = (base * altura) / 2
+                    }
+                    break;
+
+                default:
+                    area = "Por favor, escolha uma figura válida!";
+                    break;
+            }
+
+            document.getElementById("resultado").innerHTML = `Área: <strong>${area}</strong>`;
+        }
+
+        // Chama a função para mostrar os campos assim que a página for carregada
+        mostrarCampos();
+
+        // Atualiza os campos conforme a figura selecionada
+        document.getElementById("figura").addEventListener("change", mostrarCampos);
+    </script>
+</body>
+</html>

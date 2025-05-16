@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorveteria DERRETE TUDO - Promoção</title>
+    <style>
+        /* Estilos para deixar tudo rosa */
+        body {
+            background-color: #F8B7D4; /* Fundo rosa claro */
+            color: #FFFFFF; /* Texto branco */
+            font-family: Arial, sans-serif; /* Fonte padrão */
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #FF1493; /* Cor do título em rosa forte */
+        }
+
+        label, select, button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px;
+            border: 2px solid #FF1493; /* Cor rosa forte */
+            border-radius: 5px;
+            background-color: #ffffff; /* Rosa mais suave para fundo */
+            color: #FF1493; /* Cor do texto rosa forte */
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ffffff; /* Quando o botão for hover */
+            color: #FFFFFF; /* Texto branco no hover */
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: bold;
+            color: #ffffff; /* Cor rosa forte para o texto */
+        }
+    </style>
+</head>
+<body>
+    <h1>Sorveteria DERRETE TUDO</h1>
+    
+    <label for="pedido">Escolha o seu pedido:</label>
+    <select id="pedido">
+        <option value="casquinha">Casquinha</option>
+        <option value="picolé">Picolé</option>
+    </select>
+
+    <button onclick="mostrarPromocao()">Ver Promoção</button>
+
+    <p id="resultado"></p>
+
+    <script src="des7.js"></script>
+</body>
+</html>

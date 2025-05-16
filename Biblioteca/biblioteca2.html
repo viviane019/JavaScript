@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>biblioteca2</title>
+</head>
+<body>
+    <div class="container">
+        <h1>BIBLIOTECA SENAI - EDUCAÇÃO PARA A VIDA</h1>
+    </div class= "menu">
+    <button onclick="mostrarSecao('cadastro')">cadastrar livro</button>
+    <button onclick="mostrarSecao('consulta')">consultar livro</button>
+    <button onclick="mostrarSecao('alterar')">alterar livro</button>
+    <div>
+        
+        <div id="Cadastro" class="hidden">
+            <h2>cadastrar livro</h2>
+            <div class="form-group">
+                <label for="titulo">Titulo:</label>
+                <input type="text" id="titulo" placeholder="digite o titulo do livro">
+               <div>
+               </div class="form-group">
+               <label for="autor">Autor</label>
+               <input type="text" id="autor" placeholder="digite o autor do livro">
+               <div>
+             </div class="form-group">
+             <label for="ano">ano</label>
+             <input type="text" id="ano" name="digite o anode publicidade">
+             <div>
+                <button onclick="adicionarLivro()">adicionarLivro</button>
+             </div>
+
+             <button>">
+
+             </button>
+
+
+             <!--Seção de Consulta-->
+             <div id="consulta" class="hidden">
+                <h2>consultar Livros</h2>
+                <input type="text" id="busca" placeholder="buscar por Titulo" oninput="buscarLivro()">
+                <table>
+                    <thead>
+                        <tr>
+                       <th>Titulo</th> 
+                       <th>Autor</th> 
+                       <th>Ano</th>                      
+                        </tr>
+                    </thead>
+                    <body id="lista-livros">
+                        
+                    </body>
+                </table>
+
+             </div>
+             <!--Seção de alteração-->
+             <div id="alterar" class="hidden">
+                <h2>Alterar Livro</h2>
+                <input type="text" id="buscar-alterar" placeholder="Buscar por titulo" oninput="buscarLivroParaAlterar()">
+                <div id="form-alterar" class="hidden">
+                </div class="form-group">
+                <label for="novo-autor">novo titulo</label>
+                <input type="text" id="novo-titulo" placeholder="digite o novo titulo do livro">
+               <div>
+                <div class="form-group"></div>
+                <label for="novo-autor">novo autor:</label>
+                <input type="text" id="novo-autor" name="digite o novo nome do autor do livro">
+                <div>
+                    <div class="form-group"></div>
+                    <label for="novo-ano">novo ano:</label>
+                    <input type="text" id="novo-ano" name="digite o novo ano de publicidade do livro">
+            <div>
+                <button onclick="buscarLivror()"Salvar Alterações></button>
+
+                <button>">
+                    
+                </button>
+                <script src="biblioteca2.js"></script>
+                <body>
+                    
+                </body>
+                <html>
+                    
+                
+
+
+            
+

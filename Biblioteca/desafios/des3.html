@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja de Brinquedos</title>
+</head>
+<body>
+    <h1>Loja de Brinquedos</h1>
+    
+    <label>Código do Produto (1 a 10):</label>
+    <input type="number" id="codigo" min="1" max="10">
+    
+    <label>Preço do Produto:</label>
+    <input type="number" id="preco" step="0.01">
+    
+    <button onclick="calcularPreco()">Calcular Preço</button>
+    
+    <p id="resultado"></p>
+
+    <script>
+        function calcularPreco() {
+            let codigo = document.getElementById("codigo").value;
+            let preco = parseFloat(document.getElementById("preco").value);
+            
+            if (codigo == 1 || codigo == 10) {
+                preco *= 1.10; 
+            }
+            
+            document.getElementById("resultado").innerText = `Preço final: R$ ${preco.toFixed(2)}`;
+        }
+    </script>
+    <script src="des3.js"></script>
+</body>
+</html>

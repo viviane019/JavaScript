@@ -1,0 +1,128 @@
+/* Fonte personalizada e reset básico */
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:wght@400;600&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: linear-gradient(to right, #fff3e0, #ffe0b2);
+    color: #4e342e;
+    padding: 30px;
+}
+
+/* Cabeçalho estilizado */
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-family: 'Pacifico', cursive;
+    color: #d84315;
+    font-size: 48px;
+    text-shadow: 2px 2px 4px #ffccbc;
+}
+
+/* Estilização das seções */
+section {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.4s ease;
+}
+
+/* Título das seções */
+section h2 {
+    margin-bottom: 20px;
+    color: #bf360c;
+    font-size: 28px;
+}
+
+/* Inputs e botões */
+input, select {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 2px solid #ffab91;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #e64a19;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    background-color: #ff7043;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+    background-color: #d84315;
+    transform: scale(1.03);
+}
+
+/* Classe para esconder elementos */
+.hidden {
+    display: none;
+}
+
+/* Estilo para tabela de consulta */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff8e1;
+    border: 1px solid #ffe0b2;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ffccbc;
+}
+
+th {
+    background-color: #ffe0b2;
+    color: #5d4037;
+    font-weight: bold;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 36px;
+    }
+
+    section h2 {
+        font-size: 22px;
+    }
+
+    input, button {
+        font-size: 16px;
+    }
+}
+h1{
+text-align: center;}

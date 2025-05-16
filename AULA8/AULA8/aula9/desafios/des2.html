@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mecânica do Zé</title>
+    <link rel="stylesheet" href="des2.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Mecânica do Zé</h1>
+        <p>Bem-vindo à Mecânica do Zé! Escolha o serviço abaixo:</p>
+
+        <form id="clienteForm">
+            <label for="nomeCliente">Digite seu nome:</label>
+            <input type="text" id="nomeCliente" required>
+            <button type="submit">Confirmar</button>
+        </form>
+
+        <div id="menu" style="display:none;">
+            <h2>Menu de Serviços</h2>
+            <ul>
+                <li><button onclick="selecionarServico('trocaDeOleo')">1 - Troca de Óleo - R$150</button></li>
+                <li><button onclick="selecionarServico('alinhamento')">2 - Alinhamento de Direção - R$200</button></li>
+                <li><button onclick="selecionarServico('balanceamento')">3 - Balanceamento - R$100</button></li>
+                <li><button onclick="selecionarServico('trocaDePneus')">4 - Troca de Pneus - R$400</button></li>
+                <li><button onclick="selecionarServico('diagnosticoMotor')">5 - Diagnóstico de Motor - R$250</button></li>
+            </ul>
+        </div>
+
+        <div id="resumo" style="display:none;">
+            <!-- Aqui será exibido o resumo do serviço -->
+        </div>
+
+        <button id="finalizar" onclick="mostrarResumo()" style="display:none;">Finalizar</button>
+    </div>
+
+    <script src="des2.js"></script>
+</body>
+</html>
+

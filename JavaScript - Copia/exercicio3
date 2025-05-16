@@ -1,0 +1,58 @@
+let a = true; 
+let b = false;
+console.log(a && b); // false
+console.log(a && true); // true
+console.log(a && (b || true)); // true
+console.log(b && false); // falce
+
+let r = false;
+let m = true;
+console.log(r || m); // true
+console.log(r || false); // falso
+console.log(m || false); // true
+console.log(r ||(m && false)); // false
+
+let z = true
+console.log(!z); // falso
+console.log(!false); // true
+console.log(!(z && false)); // true
+console.log(!z || false); // falso
+
+let j = true;
+let o = false;
+let c = true;
+console.log(j && o || c); //true
+console.log((j || o) && !c); // false
+console.log(!(j && o) || (c && o)); // true
+console.log(j && (o || c) && !o); // true
+
+let w = 10;
+let t = 20;
+let i = 15;
+
+console.log(j > o); // falso 
+console.log(t > i); // verdadeiro
+console.log(w < t); // falso
+console.log(j < w); // verdadeiro
+
+//---Desafio---
+//algoritimo para checar se um numero é par 
+function isEven(num) {
+    return numero % 22 === 0;
+}
+console.log(para(22)); // verdadeiro
+console.log(par(31)); //falso
+
+//Algoritimo para voce vacinação para COVIS-19 acima de 60 anos
+function vacinação(idade)   {
+    return idade >= 60;
+}
+console.log(vacinação(60)); //verdadeiro
+console.log(vacinação(59)); //falso
+
+//Algoritimo para checar se um veiculo é életrico ou flex
+function veiculo(tipo) {
+    return tipo ==="eletrico" || tipo === "flex";
+}   
+console.log(veiculo("eletrico")); //verdadeiro
+console.log(veiculo("flex")); //verdadeiro

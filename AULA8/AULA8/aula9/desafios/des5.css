@@ -1,0 +1,69 @@
+/* Estilos Gerais */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Título */
+h2 {
+    color: #000000;
+}
+
+/* Estilo do Formulário */
+.form-container {
+    margin-bottom: 20px;
+}
+
+input[type="text"], input[type="email"], input[type="number"], select {
+    padding: 10px;
+    margin: 8px 0;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 12px;
+    background-color: #1e00ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #1e00ff;
+}
+
+/* Resultados */
+.resultado {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+    display: none;
+}
+
+.resultado p {
+    margin: 5px 0;
+}

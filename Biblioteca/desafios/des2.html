@@ -1,0 +1,36 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conferência de Estoque</title>
+</head>
+<body>
+    <h1>Conferir Estoque</h1>
+
+    <label for="quantidade">Quantidade:</label>
+    <input type="number" id="quantidade" min="0">
+    <button onclick="conferirEstoque()">Verificar</button>
+
+    <div id="mensagem"></div>
+
+    <script>
+        function conferirEstoque() {
+            const quantidade = parseInt(document.getElementById("quantidade").value);
+            let mensagem = '';
+            
+            if (quantidade < 30) {
+                mensagem = "Estoque Baixo";
+            } else if (quantidade > 100) {
+                mensagem = "Estoque Bom";
+            } else {
+                mensagem = "Estoque Regular";
+            }
+
+            document.getElementById("mensagem").innerText = mensagem;
+        }
+    </script>
+    <script src="des2.js"></script>
+</body>
+</html>

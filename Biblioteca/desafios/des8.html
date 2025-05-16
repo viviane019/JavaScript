@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria Bom Sabor - Promoção</title>
+</head>
+<body>
+    <h1>Pizzaria Bom Sabor - Promoção Especial</h1>
+
+    <label for="pizza1">Escolha o tamanho da primeira pizza:</label>
+    <select id="pizza1">
+        <option value="grande">Grande</option>
+        <option value="media">Média</option>
+        <option value="pequena">Pequena</option>
+    </select>
+
+    <label for="pizza2">Escolha o tamanho da segunda pizza:</label>
+    <select id="pizza2">
+        <option value="grande">Grande</option>
+        <option value="media">Média</option>
+        <option value="pequena">Pequena</option>
+    </select>
+
+    <button onclick="verificarPromocao()">Verificar Brinde</button>
+
+    <p id="resultado"></p>
+
+    <script>
+        function verificarPromocao() {
+            const pizza1 = document.getElementById("pizza1").value;
+            const pizza2 = document.getElementById("pizza2").value;
+            const resultado = document.getElementById("resultado");
+
+            if (pizza1 === "grande" && pizza2 === "grande") {
+                resultado.innerHTML = "Você ganhou um refrigerante de 2 litros!";
+            } else if ((pizza1 === "media" && pizza2 === "pequena") || (pizza1 === "pequena" && pizza2 === "media")) {
+                resultado.innerHTML = "Você ganhou uma porção de pão de alho!";
+            } else {
+                resultado.innerHTML = "Você não ganhou nenhum brinde.";
+            }
+        }
+    </script>
+    <script src="des8.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+//imprimir 11 vezes "olá mundo"
+
+function podeDirigir(idade, temHabilitacao) {
+    if (idade >= 18 && temHabilitacao) {
+        return "A pessoa pode dirigir.";
+    } else if (idade >= 18 && !temHabilitacao) {
+        return "A pessoa é maior de idade, mas não tem habilitação.";
+    } else {
+        return "A pessoa não pode dirigir, pois é menor de idade.";
+    }
+}
+
+// Entrada do usuário
+const idade = parseInt(prompt("Digite sua idade:"));
+const temHabilitacao = prompt("Você tem habilitação? (s/n):").trim().toLowerCase() === 's';
+
+// Verificação e saída
+console.log(podeDirigir(idade, temHabilitacao));
+
+
+
+//imprimir um resultado de uma tabuada
+
+let numero = 5;//voce pode mudar este numero para qualquer tabuada que deseja
+for(let i = 1; i <=20; i++) {
+    console.log(`${numero} x ${i} = ${numero * i}`) 
+}
+
+//imprimir as somas dos números impares de 1 a 100
+
+let somaImpares =0;
+for(let i = 1; i= 100; i ++) {
+    if(i % 2 !== 0) {
+        console.log(i);
+        somaImpares += i;
+    }
+}
+console.log(`a soma dos numeros impares de 1 a 100 é ${somaImpares}`);
+
+//imprimir um resultado em sequência de 10 a 1  "feliz ano novo"
+
+for(let i = 10; i > 0; i--) {
+    console.log(i);
+}
+console.log("felis ano novo!")
+
+
+//Verificação de Categoria de Idade
+
+
+
+
+//Verificação de Nota com Mensagem
+
+let nota = 85;
+if (nota >= 80) {
+    console.log('parábens, você foi muito bêm!');   
+} else if (nota < 80 && nota >= 60) {
+    console.log('você está precisnado estudar')
+}else {
+    console.log ('você está reprovado(a)');
+}
+
+//Verificação de Dia da Semana
+
+
+
+
+
+//Verificação de Horário do Dia
+//Verificação de Peso Ideal
+//Verificação de Número Primo
+//Verificação de Ano Bissexto
+//Verificação de Nota com Mensagem Personalizada
+//Verificação de Temperatura com Mensagem
+//Verificação de Desempenho de Vendas

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispositivos Antigos</title>
+    <script>
+        function mostrarInformacao() {
+            const dispositivo = document.getElementById("dispositivo").value;
+            let informacao = "";
+
+            switch (dispositivo) {
+                case "fitaCassete":
+                    informacao = "A fita cassete foi muito popular nos anos 70 e 80 para gravação e reprodução de áudio.";
+                    break;
+                case "dvd":
+                    informacao = "O DVD foi amplamente utilizado nos anos 2000 para armazenar filmes e dados.";
+                    break;
+                case "cd":
+                    informacao = "O CD revolucionou a indústria musical nos anos 90, permitindo armazenamento de áudio digital.";
+                    break;
+                default:
+                    informacao = "Por favor, selecione um dispositivo válido.";
+            }
+
+            document.getElementById("informacao").innerText = informacao;
+        }
+    </script>
+</head>
+<body>
+    <h1>Escolha um dispositivo antigo</h1>
+    <select id="dispositivo" onchange="mostrarInformacao()">
+        <option value="">--Selecione--</option>
+        <option value="fitaCassete">Fita Cassete</option>
+        <option value="dvd">DVD</option>
+        <option value="cd">CD</option>
+    </select>
+    <p id="informacao"></p>
+    
+</body>
+</html>

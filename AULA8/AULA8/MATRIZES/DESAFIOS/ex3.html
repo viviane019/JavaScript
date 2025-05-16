@@ -1,0 +1,35 @@
+//Contar os valores ímpares
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> DESAFIO 3- matrizes</title>
+</head>
+<body>
+ <input type="text" id ="matrizImpares" placeholder="digite 16 numeros separados virgula (4x4)">  
+ <button onclick="contarImparesmatriz()">contar matriz</button> 
+ <p id ="resultadoImparesMatriz"></p>
+
+ <script>
+    function contarImparesmatriz() {
+        const vetor = document.getElementById("matrizImpares").value.split(",").map(Number);
+        const matriz = [];
+        for (let v = 0; v < 3; v++) {
+            matriz[i] = vetor.slice(v * 3, (v + 1) * 3);
+        }
+            let impares = 0;
+            for(let v = 0; v < 3; v++){
+               for(let j = 0; j < 3; j++)
+                  if (matriz[v][j] % 2 === 0); {
+                       impares++;
+    }
+        document.getElementById("resultadoImparesMatriz").innerHTML = "impares :" + impares;
+
+    }
+}
+  
+ </script>
+</body>
+</html>
