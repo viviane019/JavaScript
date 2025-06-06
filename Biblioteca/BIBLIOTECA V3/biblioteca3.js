@@ -1,13 +1,40 @@
+function exibirMensagem(texto, tipo) {
+  const mensagem = document.getElementById("mensagem");
+  mensagem.textContent = texto;
+  mensagem.className = `mensagem ${tipo}`;
+  mensagem.classList.remove("hidder");
+  setTimeout(() => {
+    mensagem.classList.add("hidder");
+  }, 3000);
+}
+
+function validarLogin() {
+  const usuario = document.getElementById("usuario").value;
+  const senha = document.getElementById("senha").value;
+  const usuarioCorreto = "admin";
+  const senhaCorreta = "1234";
+
+  if (usuario === usuarioCorreto && senha === senhaCorreta) {
+    exibirMensagem("Login realizado com sucesso!", "sucesso");
+    setTimeout(() => {
+      window.location.href = "biblioteca3.html";
+    }, 1000);
+  } else {
+    exibirMensagem("Usuário ou senha incorretos!", "erro");
+  }
+}
+
 let biblioteca = [];
 let livroParaAlterar = null;
 
 function mostrarSecao(secao) {
-  // Esconde todas as seções
   document.getElementById("cadastro").classList.add("hidden");
   document.getElementById("consulta").classList.add("hidden");
   document.getElementById("alterar").classList.add("hidden");
+  document.getElementById("emprestimo").classList.add("hidden");
+  document.getElementById("venda").classList.add("hidden");
+  document.getElementById("relatorio-vendas").classList.add("hidden");
 
-  // Mostra a seção selecionada
   document.getElementById(secao).classList.remove("hidden");
 }
 
@@ -123,8 +150,7 @@ function atualizarListaEmprestimos() {
   });
 }
 
-// --- Registro de Vendas ---
-let vendas = []; // Array para armazenar as vendas
+let vendas = [];
 
 function registrarVenda() {
   const titulo = document.getElementById('venda-titulo').value;
@@ -134,13 +160,11 @@ function registrarVenda() {
   if (titulo && preco && comprador) {
     const listaVendas = document.getElementById('lista-vendas');
     const item = document.createElement('li');
-    item.textContent = `Título: ${titulo}, Preço: R$${preco}, Comprador: ${comprador}`;
+    item.textContent = `Título: ${titulo}, Preço: R$${parseFloat(preco).toFixed(2)}, Comprador: ${comprador}`;
     listaVendas.appendChild(item);
 
-    // Adicionar venda ao array de vendas
     vendas.push({ titulo, preco, comprador });
 
-    // Limpar os campos
     document.getElementById('venda-titulo').value = '';
     document.getElementById('venda-preco').value = '';
     document.getElementById('venda-comprador').value = '';
@@ -149,22 +173,16 @@ function registrarVenda() {
   }
 }
 
-//  Relatório de Vendas
 function gerarRelatorioVendas() {
   const tabelaRelatorio = document.getElementById('tabela-relatorio-vendas');
-  tabelaRelatorio.innerHTML = ''; // Limpar tabela
+  tabelaRelatorio.innerHTML = '';
 
   if (vendas.length === 0) {
     alert('Nenhuma venda registrada.');
     return;
   }
 
-  let totalVendas = 0; // Variável para armazenar o total das vendas
-
-  if (totalVendas.length === 0) {
-    alert('Valor de Venda não registrado.!')
-    return;
-  }
+  let totalVendas = 0;
 
   vendas.forEach((venda) => {
     const linha = document.createElement('tr');
@@ -175,11 +193,9 @@ function gerarRelatorioVendas() {
     `;
     tabelaRelatorio.appendChild(linha);
 
-    // Somar o preço ao total de vendas
     totalVendas += parseFloat(venda.preco);
   });
 
-  // Adicionar uma linha para o total de vendas
   const linhaTotal = document.createElement('tr');
   linhaTotal.innerHTML = `
     <td><strong>Total</strong></td>
@@ -188,6 +204,5 @@ function gerarRelatorioVendas() {
   `;
   tabelaRelatorio.appendChild(linhaTotal);
 
-  // Exibir a área do relatório
   document.getElementById('relatorio-vendas').classList.remove('hidden');
 }

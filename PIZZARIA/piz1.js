@@ -1,186 +1,209 @@
-let biblioteca = [];
-let livroParaAlterar = null;
+function exibirMensagem(texto, tipo) {
+  const mensagem = document.getElementById("mensagem");
+  mensagem.textContent = texto;
+  mensagem.className = `mensagem ${tipo}`;
+  mensagem.classList.remove("hidder");
+  setTimeout(() => {
+    mensagem.classList.add("hidder");
+  }, 3000);
+}
+
+function validarLogin() {
+  const usuario = document.getElementById("usuario").value;
+  const senha = document.getElementById("senha").value;
+  const usuarioCorreto = "admin";
+  const senhaCorreta = "1234";
+
+  if (usuario === usuarioCorreto && senha === senhaCorreta) {
+    exibirMensagem("Login realizado com sucesso!", "sucesso");
+    setTimeout(() => {
+      window.location.href = "piz1.html";
+    }, 1000);
+  } else {
+    exibirMensagem("Usuário ou senha incorretos!", "erro");
+  }
+}
+
+let pizzaria = [];
+let pizzaParaAlterar = null;
+let pedidos = [];
+let vendas = [];
 
 function mostrarSecao(secao) {
-  // Esconde todas as seções
   document.getElementById("cadastro").classList.add("hidden");
   document.getElementById("consulta").classList.add("hidden");
   document.getElementById("alterar").classList.add("hidden");
+  document.getElementById("pedido").classList.add("hidden");
+  document.getElementById("venda").classList.add("hidden");
+  document.getElementById("relatorio-vendas").classList.add("hidden");
 
-  // Mostra a seção selecionada
   document.getElementById(secao).classList.remove("hidden");
 }
 
-function adicionarLivro() {
-  const titulo = document.getElementById("titulo").value;
-  const autor = document.getElementById("autor").value;
-  const ano = parseInt(document.getElementById("ano").value);
+function adicionarPizza() {
+  const nome = document.getElementById("nome").value;
+  const ingredientes = document.getElementById("ingredientes").value;
+  const tamanho = parseInt(document.getElementById("tamanho").value);
 
-  if (titulo && autor && ano) {
-    biblioteca.push({ titulo, autor, ano });
-    document.getElementById("titulo").value = "";
-    document.getElementById("autor").value = "";
-    document.getElementById("ano").value = "";
+  if (nome && ingredientes && tamanho) {
+    pizzaria.push({ nome, ingredientes, tamanho });
+    document.getElementById("nome").value = "";
+    document.getElementById("ingredientes").value = "";
+    document.getElementById("tamanho").value = "";
     atualizarLista();
-    alert("Livro adicionado com sucesso!");
+    alert("Pizza adicionada com sucesso!");
   } else {
     alert("Por favor, preencha todos os campos.");
   }
 }
 
-function buscarLivro() {
+function buscarPizza() {
   const busca = document.getElementById("busca").value.toLowerCase();
-  const resultados = biblioteca.filter((livro) =>
-    livro.titulo.toLowerCase().includes(busca)
+  const resultados = pizzaria.filter((pizza) =>
+    pizza.nome.toLowerCase().includes(busca)
   );
   atualizarLista(resultados);
 }
 
-function buscarLivroParaAlterar() {
+function buscarPizzaParaAlterar() {
   const busca = document.getElementById("busca-alterar").value.toLowerCase();
-  livroParaAlterar = biblioteca.find((livro) =>
-    livro.titulo.toLowerCase().includes(busca)
+  pizzaParaAlterar = pizzaria.find((pizza) =>
+    pizza.nome.toLowerCase().includes(busca)
   );
 
-  if (livroParaAlterar) {
+  if (pizzaParaAlterar) {
     document.getElementById("form-alterar").classList.remove("hidden");
-    document.getElementById("novo-titulo").value = livroParaAlterar.titulo;
-    document.getElementById("novo-autor").value = livroParaAlterar.autor;
-    document.getElementById("novo-ano").value = livroParaAlterar.ano;
+    document.getElementById("novo-nome").value = pizzaParaAlterar.nome;
+    document.getElementById("novo-ingredientes").value = pizzaParaAlterar.ingredientes;
+    document.getElementById("novo-tamanho").value = pizzaParaAlterar.tamanho;
   } else {
-    alert("Livro não encontrado.");
+    alert("Pizza não encontrada.");
   }
 }
 
-function alterarLivro() {
-  if (livroParaAlterar) {
-    const novoTitulo = document.getElementById("novo-titulo").value;
-    const novoAutor = document.getElementById("novo-autor").value;
-    const novoAno = parseInt(document.getElementById("novo-ano").value);
+function alterarPizza() {
+  if (pizzaParaAlterar) {
+    const novoNome = document.getElementById("novo-nome").value;
+    const novosIngredientes = document.getElementById("novo-ingredientes").value;
+    const novoTamanho = parseInt(document.getElementById("novo-tamanho").value);
 
-    if (novoTitulo && novoAutor && novoAno) {
-      livroParaAlterar.titulo = novoTitulo;
-      livroParaAlterar.autor = novoAutor;
-      livroParaAlterar.ano = novoAno;
+    if (novoNome && novosIngredientes && novoTamanho) {
+      pizzaParaAlterar.nome = novoNome;
+      pizzaParaAlterar.ingredientes = novosIngredientes;
+      pizzaParaAlterar.tamanho = novoTamanho;
 
       atualizarLista();
-      alert("Livro alterado com sucesso!");
+      alert("Pizza alterada com sucesso!");
       document.getElementById("form-alterar").classList.add("hidden");
+      pizzaParaAlterar = null;
+      document.getElementById("busca-alterar").value = "";
     } else {
       alert("Por favor, preencha todos os campos.");
     }
+  } else {
+    alert("Nenhuma pizza selecionada para alteração.");
   }
 }
 
-function atualizarLista(lista = biblioteca) {
-  const tabela = document.getElementById("lista-livros");
+function atualizarLista(lista = pizzaria) {
+  const tabela = document.getElementById("lista-pizzas");
   tabela.innerHTML = "";
 
-  lista.forEach((livro) => {
+  if (lista.length === 0) {
+    tabela.innerHTML = `<tr><td colspan="3">Nenhuma pizza encontrada.</td></tr>`;
+    return;
+  }
+
+  lista.forEach((pizza) => {
     const linha = document.createElement("tr");
     linha.innerHTML = `
-      <td>${livro.titulo}</td>
-      <td>${livro.autor}</td>
-      <td>${livro.ano}</td>
+      <td>${pizza.nome}</td>
+      <td>${pizza.ingredientes}</td>
+      <td>${pizza.tamanho} cm</td>
     `;
     tabela.appendChild(linha);
   });
 }
 
-let emprestimos = [];
+function realizarPedido() {
+  const nome = document.getElementById("pedido-pizza").value;
+  const cliente = document.getElementById("pedido-cliente").value;
 
-function realizarEmprestimo() {
-  const titulo = document.getElementById("emprestimo-titulo").value;
-  const nomeUsuario = document.getElementById("emprestimo-nome").value;
-
-  if (titulo && nomeUsuario) {
-    const livro = biblioteca.find(
-      (livro) => livro.titulo.toLowerCase() === titulo.toLowerCase()
+  if (nome && cliente) {
+    const pizza = pizzaria.find(
+      (pizza) => pizza.nome.toLowerCase() === nome.toLowerCase()
     );
 
-    if (livro) {
-      emprestimos.push({ titulo: livro.titulo, usuario: nomeUsuario });
-      atualizarListaEmprestimos();
-      alert("Empréstimo realizado com sucesso!");
-      document.getElementById("emprestimo-titulo").value = "";
-      document.getElementById("emprestimo-nome").value = "";
+    if (pizza) {
+      pedidos.push({ nome: pizza.nome, cliente });
+      atualizarListaPedidos();
+      alert("Pedido realizado com sucesso!");
+      document.getElementById("pedido-pizza").value = "";
+      document.getElementById("pedido-cliente").value = "";
     } else {
-      alert("Livro não encontrado na biblioteca.");
+      alert("Pizza não encontrada.");
     }
   } else {
     alert("Por favor, preencha todos os campos.");
   }
 }
 
-function atualizarListaEmprestimos() {
-  const listaEmprestimos = document.getElementById("lista-emprestimos");
-  listaEmprestimos.innerHTML = "";
+function atualizarListaPedidos() {
+  const listaPedidos = document.getElementById("lista-pedidos");
+  listaPedidos.innerHTML = "";
 
-  emprestimos.forEach((emprestimo) => {
+  pedidos.forEach((pedido) => {
     const item = document.createElement("li");
-    item.textContent = `Livro: ${emprestimo.titulo} - Usuário: ${emprestimo.usuario}`;
-    listaEmprestimos.appendChild(item);
+    item.textContent = `Pizza: ${pedido.nome} - Cliente: ${pedido.cliente}`;
+    listaPedidos.appendChild(item);
   });
 }
 
-// --- Registro de Vendas ---
-let vendas = []; // Array para armazenar as vendas
-
 function registrarVenda() {
-  const titulo = document.getElementById('venda-titulo').value;
-  const preco = document.getElementById('venda-preco').value;
-  const comprador = document.getElementById('venda-comprador').value;
+  const nome = document.getElementById("venda-nome").value;
+  const preco = document.getElementById("venda-preco").value;
+  const comprador = document.getElementById("venda-comprador").value;
 
-  if (titulo && preco && comprador) {
-    const listaVendas = document.getElementById('lista-vendas');
-    const item = document.createElement('li');
-    item.textContent = `Título: ${titulo}, Preço: R$${preco}, Comprador: ${comprador}`;
+  if (nome && preco && comprador) {
+    const listaVendas = document.getElementById("lista-vendas");
+    const item = document.createElement("li");
+    item.textContent = `Pizza: ${nome}, Preço: R$${parseFloat(preco).toFixed(2)}, Comprador: ${comprador}`;
     listaVendas.appendChild(item);
 
-    // Adicionar venda ao array de vendas
-    vendas.push({ titulo, preco, comprador });
+    vendas.push({ nome, preco: parseFloat(preco), comprador });
 
-    // Limpar os campos
-    document.getElementById('venda-titulo').value = '';
-    document.getElementById('venda-preco').value = '';
-    document.getElementById('venda-comprador').value = '';
+    document.getElementById("venda-nome").value = "";
+    document.getElementById("venda-preco").value = "";
+    document.getElementById("venda-comprador").value = "";
   } else {
-    alert('Por favor, preencha todos os campos!');
+    alert("Por favor, preencha todos os campos!");
   }
 }
 
-//  Relatório de Vendas
 function gerarRelatorioVendas() {
-  const tabelaRelatorio = document.getElementById('tabela-relatorio-vendas');
-  tabelaRelatorio.innerHTML = ''; // Limpar tabela
+  const tabelaRelatorio = document.getElementById("tabela-relatorio-vendas");
+  tabelaRelatorio.innerHTML = "";
 
   if (vendas.length === 0) {
-    alert('Nenhuma venda registrada.');
+    alert("Nenhuma venda registrada.");
     return;
   }
 
-  let totalVendas = 0; // Variável para armazenar o total das vendas
-
-  if (totalVendas.length === 0) {
-    alert('Valor de Venda não registrado.!')
-    return;
-  }
+  let totalVendas = 0;
 
   vendas.forEach((venda) => {
-    const linha = document.createElement('tr');
+    const linha = document.createElement("tr");
     linha.innerHTML = `
-      <td>${venda.titulo}</td>
-      <td>R$${parseFloat(venda.preco).toFixed(2)}</td>
+      <td>${venda.nome}</td>
+      <td>R$${venda.preco.toFixed(2)}</td>
       <td>${venda.comprador}</td>
     `;
     tabelaRelatorio.appendChild(linha);
 
-    // Somar o preço ao total de vendas
-    totalVendas += parseFloat(venda.preco);
+    totalVendas += venda.preco;
   });
 
-  // Adicionar uma linha para o total de vendas
-  const linhaTotal = document.createElement('tr');
+  const linhaTotal = document.createElement("tr");
   linhaTotal.innerHTML = `
     <td><strong>Total</strong></td>
     <td><strong>R$${totalVendas.toFixed(2)}</strong></td>
@@ -188,6 +211,5 @@ function gerarRelatorioVendas() {
   `;
   tabelaRelatorio.appendChild(linhaTotal);
 
-  // Exibir a área do relatório
-  document.getElementById('relatorio-vendas').classList.remove('hidden');
+  document.getElementById("relatorio-vendas").classList.remove("hidden");
 }

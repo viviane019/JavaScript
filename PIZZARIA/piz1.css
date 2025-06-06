@@ -1,0 +1,154 @@
+/* Reset & Fonte padrão */
+* {
+  box-sizing: border-box;
+  font-family: 'Ubuntu', Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body {
+  margin: 20px;
+  background-color: #f7f1e1;
+  color: #4a3c31;
+}
+
+/* Containers */
+.container, #consulta {
+  max-width: 1200px;
+  margin: auto;
+  background: #fff9f0;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(74, 60, 49, 0.15);
+}
+
+/* Títulos */
+h1, h2 {
+  text-align: center;
+  color: #8b3e2f;
+}
+
+#consulta h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #8b3e2f;
+  display: inline-block;
+  padding-bottom: 5px;
+  color: #8b3e2f;
+}
+
+/* Menu */
+.menu {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.menu button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: #b55239;
+  color: white;
+  font-size: 20px;
+  transition: background-color 0.3s;
+}
+
+.menu button:hover {
+  background-color: #8b3e2f;
+}
+
+/* Formulários */
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input, button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #cbb99b;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: #8b3e2f;
+  outline: none;
+}
+
+/* Botões gerais */
+button {
+  background-color: #b55239;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #8b3e2f;
+}
+
+/* Campo de busca específico */
+#busca {
+  border: 2px solid #ddd;
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+#busca:focus {
+  border-color: #8b3e2f;
+}
+
+/* Tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+thead {
+  background-color: #8b3e2f;
+  color: #fff;
+}
+
+tbody tr:hover {
+  background-color: #ffe5dc;
+}
+
+/* Outros */
+.hidden {
+  display: none;
+}
+
+.icon {
+  margin-right: 5px;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .container, #consulta {
+    padding: 15px 20px;
+  }
+
+  th, td {
+    font-size: 14px;
+    padding: 10px 8px;
+  }
+
+  #busca {
+    font-size: 14px;
+  }
+}

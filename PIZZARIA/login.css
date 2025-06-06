@@ -1,0 +1,79 @@
+/* login.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f1e1; /* bege claro, tom natural */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #fff9f0; /* creme claro */
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(74, 60, 49, 0.15); /* sombra marrom suave */
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+h1 {
+  color: #b55239; /* vermelho queimado */
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #4a3c31; /* marrom escuro */
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #4a3c31;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbb99b; /* bege amadeirado */
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #b55239; /* vermelho queimado */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #8b3e2f; /* vermelho terroso escuro */
+}
+
+.mensagem {
+  margin-top: 20px;
+  color: #8b3e2f; /* tom vermelho terroso para alertas */
+  font-weight: bold;
+}
+
+.hidden {
+  display: none;
+}

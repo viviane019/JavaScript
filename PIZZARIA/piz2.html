@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Pizzaria - Cadastro e Pedido</title>
+  <link rel="stylesheet" href="piz2.css">
+</head>
+<body>
+  <div class="container">
+
+    <!-- Tela Cadastro -->
+    <div id="tela-cadastro">
+      <h1>Cadastro do Cliente</h1>
+      <form id="form-cadastro">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required />
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" required />
+
+        <label for="endereco">Endereço:</label>
+        <input type="text" id="endereco" required />
+
+        <button type="submit">Continuar para Cardápio</button>
+      </form>
+    </div>
+
+    <!-- Tela Cardápio -->
+    <div id="tela-cardapio" class="hidden">
+      <h1>Cardápio</h1>
+      <div id="lista-pizzas"></div>
+
+      <h2>Seu Pedido:</h2>
+      <ul id="pedido-lista"></ul>
+      <p><strong>Total: R$ <span id="total-pedido">0.00</span></strong></p>
+
+      <h2>Forma de Pagamento:</h2>
+      <select id="forma-pagamento">
+        <option value="">Selecione</option>
+        <option value="Dinheiro">Dinheiro</option>
+        <option value="Cartão">Cartão</option>
+      </select>
+
+      <button id="finalizar-pedido">Finalizar Pedido</button>
+    </div>
+
+  </div>
+
+  <script>
+    // Variáveis globais
+    const pizzas = [
+      { nome: 'Marguerita', preco: 100.0, ingredientes: 'Molho, queijo, manjericão' },
+      { nome: 'Pepperoni', preco: 90.0, ingredientes: 'Molho, queijo, pepperoni' },
+      { nome: 'Frango', preco: 90.0, ingredientes: 'Frango, catupiry, queijo' },
+      { nome: 'Portuguesa', preco: 110.0, ingredientes: 'Presunto, ovo, cebola, azeitona' },
+      { nome: 'Mussarela', preco: 90.0, ingredientes: 'Mussarela, provolone, parmesão, gorgonzola' },
+      { nome: 'Chocolate', preco: 85.0, ingredientes: 'Chocolate, leite condensado' },
+      { nome: 'Romeu e Julieta', preco: 80.0, ingredientes: 'Goiabada, queijo' },
+      { nome: 'Refrigerante 2L', preco: 10.0, ingredientes: 'Bebida' },
+      { nome: 'Suco Natural', preco: 8.0, ingredientes: 'Bebida' },
+    ];
+
+    let pedido = [];
+
+    // Elementos
+    const telaCadastro = document.getElementById('tela-cadastro');
+    const telaCardapio = document.getElementById('tela-cardapio');
+    const listaPizzas = document.getElementById('lista-pizzas');
+    const pedidoLista = document.getElementById('pedido-lista');
+    const totalPedido = document.getElementById('total-pedido');
+    const formaPagamento = document.getElementById('forma-pagamento');
+    const finalizarPedidoBtn = document.getElementById('finalizar-pedido');
+    const formCadastro = document.getElementById('form-cadastro');
+
+    formCadastro.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+      const endereco = document.getElementById('endereco').value.trim();
+
+      if (nome && telefone && endereco) {
+        localStorage.setItem('cliente', JSON.stringify({ nome, telefone, endereco }));
+        telaCadastro.classList.add('hidden');
+        telaCardapio.classList.remove('hidden');
+        carregarCardapio();
+      } else {
+        alert('Preencha todos os campos.');
+      }
+    });
+
+    function carregarCardapio() {
+      listaPizzas.innerHTML = '';
+
+      pizzas.forEach((pizza, index) => {
+        const card = document.createElement('div');
+        card.className = 'pizza-card';
+        card.innerHTML = `
+          <h3>${pizza.nome}</h3>
+          <p><em>${pizza.ingredientes}</em></p>
+          <p><strong>R$ ${pizza.preco.toFixed(2)}</strong></p>
+          <button data-index="${index}">Comprar</button>
+        `;
+        listaPizzas.appendChild(card);
+      });
+
+      listaPizzas.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = btn.getAttribute('data-index');
+          adicionarAoPedido(pizzas[idx]);
+        });
+      });
+    }
+
+    function adicionarAoPedido(pizza) {
+      pedido.push(pizza);
+      atualizarPedido();
+    }
+
+    function atualizarPedido() {
+      pedidoLista.innerHTML = '';
+      let total = 0;
+      pedido.forEach((pizza) => {
+        const li = document.createElement('li');
+        li.textContent = `${pizza.nome} - R$ ${pizza.preco.toFixed(2)}`;
+        pedidoLista.appendChild(li);
+        total += pizza.preco;
+      });
+      totalPedido.textContent = total.toFixed(2);
+    }
+
+    finalizarPedidoBtn.addEventListener('click', () => {
+      const pagamento = formaPagamento.value;
+      const cliente = JSON.parse(localStorage.getItem('cliente'));
+
+      if (!cliente) {
+        alert('Cliente não cadastrado. Volte ao cadastro.');
+        telaCadastro.classList.remove('hidden');
+        telaCardapio.classList.add('hidden');
+        return;
+      }
+
+      if (pedido.length === 0) {
+        alert('Escolha pelo menos uma pizza.');
+        return;
+      }
+
+      if (!pagamento) {
+        alert('Selecione a forma de pagamento.');
+        return;
+      }
+
+      alert(`Pedido finalizado!\nCliente: ${cliente.nome}\nTotal: R$ ${pedido.reduce((sum, p) => sum + p.preco, 0).toFixed(2)}\nPagamento: ${pagamento}`);
+
+      pedido = [];
+      atualizarPedido();
+      formaPagamento.value = '';
+      telaCadastro.classList.remove('hidden');
+      telaCardapio.classList.add('hidden');
+      formCadastro.reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="login.css" />
+  <title>Login - PIzzaria</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Bem-vindo à nossa pizzaria</h1>
+    <h2>Faça login para continuar</h2>
+
+    <div class="form-group">
+      <label for="usuario">Usuário:</label>
+      <input type="text" id="usuario" placeholder="Digite seu usuário" />
+    </div>
+
+    <div class="form-group">
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" placeholder="Digite sua senha" />
+    </div>
+
+    <p><button onclick="validarLogin()">Entrar</button></p>
+
+    <!--<p><button onclick="mostrarCadastroUsuario()">Cadastrar novo usuário</button></p>
+    <p><button onclick="esquecerSenha()">Esqueceu a senha?</button></p>-->
+
+    <p id="mensagem" class="mensagem hidden"></p>
+    
+  </div>
+</body>
+<script src="piz1.js"></script>
+</html>
